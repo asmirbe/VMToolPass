@@ -13,6 +13,17 @@ class App {
 		this.notificationManager = new NotificationManager();
 		this.timeFormatter = new TimeFormatter();
 		this.initializeEventListeners();
+		this.setDefaultTime();
+	}
+
+	private setDefaultTime(): void {
+		const timeInput = document.getElementById('timeInput') as HTMLInputElement;
+		timeInput.value = this.timeFormatter.getCurrentTime(false);
+		timeInput.focus();
+
+		// Place cursor at the end of the input
+		const len = timeInput.value.length;
+		timeInput.setSelectionRange(len, len);
 	}
 
 	private initializeEventListeners(): void {
