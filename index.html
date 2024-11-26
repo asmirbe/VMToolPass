@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Générateur de Mot de Passe</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="stylesheet" href="src/style.scss" />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+	</head>
+	<body>
+		<div id="app">
+			<div class="container">
+				<main class="card">
+					<header>
+						<h1>Générateur de Mot de Passe VMOutils</h1>
+					</header>
+					<form id="passwordForm">
+						<div class="input-group">
+							<label for="timeInput">Heure (HH:MM:SS)</label>
+							<input type="text" id="timeInput" placeholder="Saisissez l'heure (ex: 14:30:45)" autocomplete="off" maxlength="8" />
+						</div>
+
+						<div class="button-group">
+							<button type="button" id="fillTimeBtn" class="secondary">Utiliser l'Heure Actuelle</button>
+							<button type="submit" id="generateBtn">Générer le Mot de Passe</button>
+						</div>
+
+						<div class="input-group">
+							<label for="passwordOutput">Mot de Passe Généré</label>
+							<div class="password-container">
+								<input type="text" id="passwordOutput" readonly placeholder="Votre mot de passe" />
+								<button type="button" id="copyBtn" class="icon-button" title="Copier dans le presse-papiers">
+									<svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2">
+										<path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
+										<path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"></path>
+									</svg>
+								</button>
+							</div>
+						</div>
+					</form>
+					<footer>
+						<p>Développé par <a target="_blank" href="https://hiasmir.com"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tabler-icon tabler-icon-brand-github"><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path></svg> Asmir</a></p>
+					</footer>
+				</main>
+			</div>
+		</div>
+		<script type="module" src="/src/main.ts"></script>
+	</body>
+</html>
