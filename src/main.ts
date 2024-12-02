@@ -31,7 +31,6 @@ class App {
     const timeInput = document.getElementById('timeInput') as HTMLInputElement;
     const fillTimeBtn = document.getElementById('fillTimeBtn') as HTMLButtonElement;
     const copyBtn = document.getElementById('copyBtn') as HTMLButtonElement;
-    const generateBtn = document.getElementById('generateBtn') as HTMLButtonElement;
 
     form.addEventListener('submit', (e) => this.handleFormSubmit(e));
     timeInput.addEventListener('input', (e) => this.handleTimeInput(e));
@@ -64,7 +63,7 @@ class App {
 
   private handleKeyDown(e: KeyboardEvent): void {
     const timeInput = e.target as HTMLInputElement;
-    
+
     if (e.key === 'Enter') {
       e.preventDefault();
       this.handleFormSubmit(e);
@@ -112,7 +111,7 @@ class App {
   private handleTimeInput(e: Event): void {
     const input = e.target as HTMLInputElement;
     const formattedValue = this.timeFormatter.format(input.value);
-    
+
     if (formattedValue !== input.value) {
       const cursorPos = input.selectionStart;
       input.value = formattedValue;
@@ -140,16 +139,16 @@ class App {
   private async handleCopy(): Promise<void> {
     const passwordOutput = document.getElementById('passwordOutput') as HTMLInputElement;
     const copyBtn = document.getElementById('copyBtn') as HTMLButtonElement;
-    
+
     if (!passwordOutput.value) return;
 
     try {
       await navigator.clipboard.writeText(passwordOutput.value);
-      
+
       // Visual feedback
       copyBtn.classList.add('copied');
       setTimeout(() => copyBtn.classList.remove('copied'), 500);
-      
+
       this.notificationManager.show('Mot de passe copié !');
     } catch (err) {
       this.notificationManager.show('Échec de la copie', 'error');
