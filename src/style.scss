@@ -8,6 +8,7 @@
 	--border-color: #e2e8f0;
 	--success-color: #10b981;
 	--error-color: #ef4444;
+	--focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.2);
 }
 
 * {
@@ -16,23 +17,22 @@
 	box-sizing: border-box;
 	font-family: "Inter", sans-serif;
 }
+
 html,
 button {
 	font-size: 13px;
 }
+
 body {
 	background: url(/noise.webp);
 	display: flex;
 	flex-direction: column;
-	height: 100dvh;
+	min-height: 100dvh;
 	position: relative;
 	width: 100%;
 	color: var(--text-primary);
-	min-height: 100vh;
-	margin: 0;
 	font-family: Inter, sans-serif;
 	-webkit-font-smoothing: antialiased;
-
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -43,23 +43,36 @@ body {
 	width: 100%;
 	max-width: 512px;
 	margin: 0 auto;
+	animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 header {
 	margin-bottom: 2rem;
 
 	h1 {
-		color: rgb(51, 51, 51);
+		color: var(--text-secondary);
 		font-size: 1.23rem;
 		font-weight: 600;
 		line-height: 1.2;
+		transition: color 0.2s ease;
 	}
 
 	p {
 		color: rgb(153, 153, 153);
 		font-size: 1rem;
 		font-weight: 400;
-		margin: 8px 0px 0px;
+		margin: 8px 0 0;
 	}
 }
 
@@ -69,15 +82,18 @@ p {
 		display: inline-flex;
 		align-items: center;
 		gap: 4px;
-		-webkit-box-align: center;
-		color: rgb(179, 179, 179);
+		color: var(--text-primary);
 		font-size: 0.92rem;
 		font-weight: 500;
-		gap: 4px;
 		text-decoration: none;
+		transition: all 0.2s ease;
+
 		&:hover {
-			color: rgb(153, 153, 153);
-			cursor: pointer;
+			color: var(--primary-color);
+		}
+
+		svg {
+			transition: transform 0.2s ease;
 		}
 	}
 }
@@ -85,45 +101,53 @@ p {
 .card {
 	background: var(--card-background);
 	padding: 24px;
-	background: rgb(255, 255, 255);
 	border: 1px solid rgb(235, 235, 235);
-	border-radius: 8px;
+	border-radius: 12px;
 	height: 100%;
-	overflow: auto hidden;
 	width: 100%;
+	box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .input-group {
 	margin-bottom: 1.5rem;
+	transition: transform 0.2s ease;
 
 	label {
 		display: block;
 		font-size: 0.85rem;
-		font-weight: 400;
-		margin-bottom: 4px;
+		font-weight: 500;
+		margin-bottom: 6px;
 		color: var(--text-primary);
+		transition: color 0.2s ease;
+	}
+
+	&:focus-within label {
+		color: var(--primary-color);
 	}
 
 	input {
 		background-color: rgba(0, 0, 0, 0.02);
 		border: 1px solid rgb(235, 235, 235);
-		border-radius: 4px;
-		box-sizing: border-box;
-		color: rgb(51, 51, 51);
+		border-radius: 6px;
+		color: var(--text-secondary);
 		display: flex;
-		-webkit-box-flex: 1;
 		flex-grow: 1;
-		font-family: Inter, sans-serif;
 		font-weight: 400;
-		height: 32px;
+		height: 36px;
 		outline: none;
-		padding: 8px;
+		padding: 8px 12px;
 		width: 100%;
+		transition: all 0.2s ease;
+
+		&:hover {
+			border-color: rgb(200, 200, 200);
+		}
 
 		&:focus {
-			outline: none;
 			border-color: var(--primary-color);
-			box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+			box-shadow: var(--focus-ring);
+			background-color: white;
 		}
 	}
 }
@@ -135,38 +159,32 @@ p {
 }
 
 button {
-	-webkit-box-align: center;
 	align-items: center;
-	background: rgb(25, 97, 237);
-	border-color: rgba(0, 0, 0, 0.04);
-	box-shadow: none;
-	color: rgb(255, 255, 255);
-	opacity: 1;
-	text-decoration: none;
-	border-radius: 4px;
-	border-style: solid;
+	background: var(--primary-color);
+	border: 1px solid transparent;
+	color: white;
+	border-radius: 6px;
 	cursor: pointer;
 	display: flex;
-	flex-direction: row;
-	font-family: Inter, sans-serif;
 	font-weight: 500;
 	font-size: 13px;
-	gap: 4px;
-	height: 32px;
-	-webkit-box-pack: start;
-	justify-content: flex-start;
-	padding: 0px 8px;
-	transition: background 0.1s;
+	gap: 6px;
+	height: 36px;
+	justify-content: center;
+	padding: 0 12px;
+	transition: all 0.2s ease;
 	white-space: nowrap;
-	width: auto;
-	border-width: 1px !important;
+	min-width: 100px;
 
 	&#generateBtn {
 		background-color: var(--primary-color);
-		color: white;
 
 		&:hover {
 			background-color: var(--primary-hover);
+		}
+
+		&:active {
+			transform: translateY(0);
 		}
 	}
 
@@ -174,8 +192,13 @@ button {
 		background-color: transparent;
 		border: 1px solid var(--border-color);
 		color: var(--text-secondary);
+
 		&:hover {
 			background: #f5f5f5;
+		}
+
+		&:active {
+			transform: translateY(0);
 		}
 	}
 }
@@ -186,21 +209,37 @@ button {
 	align-items: center;
 
 	input {
-		padding-right: 2rem;
+		padding-right: 2.5rem;
 	}
 
 	.icon-button {
 		position: absolute;
-		right: 0;
-		padding: 0.5rem;
+		right: 4px;
+		height: 28px;
+		padding: 6px;
 		background: none;
 		border: none;
 		cursor: pointer;
 		color: rgb(153, 153, 153);
-		transition: color 0.2s ease;
+		transition: all 0.2s ease;
+		min-width: auto;
+		border-radius: 4px;
 
 		&:hover {
-			color: #000;
+			color: var(--primary-color);
+			background-color: rgba(37, 99, 235, 0.1);
+		}
+
+		svg {
+			transition: transform 0.2s ease;
+		}
+
+		&:hover svg {
+			transform: scale(1.1);
+		}
+
+		&:active svg {
+			transform: scale(0.95);
 		}
 	}
 }
@@ -209,16 +248,70 @@ button {
 	position: fixed;
 	bottom: 1rem;
 	left: 50%;
-	transform: translateX(-50%);
+	transform: translateX(-50%) translateY(100%);
 	background-color: var(--success-color);
 	color: white;
 	padding: 0.75rem 1.5rem;
-	border-radius: 0.5rem;
+	border-radius: 8px;
 	box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 	opacity: 0;
-	transition: opacity 0.3s ease;
+	transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	z-index: 1000;
 
 	&.show {
 		opacity: 1;
+		transform: translateX(-50%) translateY(0);
+	}
+
+	&.error {
+		background-color: var(--error-color);
+	}
+}
+
+// Responsive improvements
+@media (max-width: 480px) {
+	.button-group {
+		flex-direction: column;
+	}
+
+	button {
+		width: 100%;
+	}
+
+	.card {
+		padding: 16px;
+	}
+}
+
+// Focus styles for keyboard navigation
+:focus-visible {
+	outline: none;
+	box-shadow: var(--focus-ring);
+}
+
+// Loading state
+.loading {
+	opacity: 0.7;
+	pointer-events: none;
+	position: relative;
+
+	&::after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 1.5em;
+		height: 1.5em;
+		margin: -0.75em 0 0 -0.75em;
+		border: 2px solid rgba(255, 255, 255, 0.2);
+		border-top-color: white;
+		border-radius: 50%;
+		animation: spin 0.6s linear infinite;
+	}
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
 	}
 }
