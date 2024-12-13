@@ -40,8 +40,7 @@ body {
 }
 
 .container {
-	width: 100%;
-	max-width: 512px;
+	width: 490px;
 	margin: 0 auto;
 	animation: fadeIn 0.3s ease-out;
 }
@@ -76,7 +75,28 @@ header {
 	}
 }
 
+kbd {
+	padding: 0.2em 0.4em;
+	margin: 0;
+	font-size: 85%;
+	white-space: break-spaces;
+	background-color: rgba(0, 0, 0, 0.05);
+	border-radius: 6px;
+}
 p {
+	line-height: 1.54;
+	&:not(:last-child) {
+		margin-bottom: 1rem;
+	}
+	&.info {
+		padding: 0.8em;
+		border: 1px solid rgba(0, 0, 0, 0.05);
+		box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+		border-radius: 6px;
+		font-size: 0.92rem;
+		font-weight: 500;
+	}
+
 	a {
 		vertical-align: middle;
 		display: inline-flex;
@@ -156,6 +176,9 @@ p {
 	display: flex;
 	gap: 1rem;
 	margin-bottom: 1.5rem;
+	button {
+		flex-grow: 1;
+	}
 }
 
 button {

@@ -17,16 +17,6 @@ class App {
 		this.notificationManager = new NotificationManager();
 		this.timeFormatter = new TimeFormatter();
 		this.initializeEventListeners();
-		this.setDefaultTime();
-	}
-
-	private setDefaultTime(): void {
-		const timeInput = document.getElementById('timeInput') as HTMLInputElement;
-		timeInput.value = this.timeFormatter.getCurrentTime(false);
-		timeInput.focus();
-
-		const len = timeInput.value.length;
-		timeInput.setSelectionRange(len, len);
 	}
 
 	private initializeEventListeners(): void {
@@ -60,6 +50,13 @@ class App {
 			if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
 				e.preventDefault();
 				this.handleFormSubmit(e);
+			}
+			// Focus timeInput when space is pressed
+			if (e.key === ' ' && (e.target === document.body || (e.target as HTMLElement).id === 'timeInput')) {
+				e.preventDefault();
+				const timeInput = document.getElementById('timeInput') as HTMLInputElement;
+					timeInput.value = '';
+					timeInput.focus();
 			}
 		});
 	}
