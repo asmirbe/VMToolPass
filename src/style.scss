@@ -40,7 +40,8 @@ body {
 }
 
 .container {
-	width: 490px;
+	max-width: 490px;
+	width: 100%;
 	margin: 0 auto;
 	animation: fadeIn 0.3s ease-out;
 }
@@ -239,6 +240,7 @@ button {
 		position: absolute;
 		right: 4px;
 		height: 28px;
+		width: 28px;
 		padding: 6px;
 		background: none;
 		border: none;
